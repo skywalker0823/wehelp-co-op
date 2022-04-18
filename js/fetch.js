@@ -1,5 +1,30 @@
 /** fetch weather API  section  */
+async function fetchWeather(county){
+    const API_KEY = "CWB-5D18B5E4-3042-4DA2-9029-61060F781595";
+    const url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${API_KEY}&locationName=${county}`
+    try{
+        let response = await fetch(url); 
+        if(response.ok){
+            let weatherData = await response.json();
+            return weatherData;
+        }else{
+            throw "weather fetching fail";
+        };                              
+    }catch(error){
+        console.log(error)
+    };
+};
 
+let weather = fetchWeather("臺北市");
+
+weather.
+then((weatherData)=>{
+    /**這邊做資料處理&畫面render*/
+    console.log(weatherData)
+})
+.catch((error)=>{
+    console.log(error)
+});
 
 
 
