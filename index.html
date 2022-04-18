@@ -8,6 +8,28 @@
   <title>How's the Weather</title>
 </head>
 <body>
-  
+  <div id="container">
+    <div class="main-content">
+      <div class="search-bar">
+        <input type="text" id="input-field" placeholder="請輸入想要查詢的縣市名稱" />
+        <input type="button" id="search-btn" />
+      </div>
+      <div class="weather-data">
+        <div id="place">台北市</div>
+        <div>
+          <span id="temp-low" class="temp">24</span>
+           ℃ <span class="dash"> - </span>
+           <span id="temp-high" class="temp">26</span>
+           ℃
+        </div>
+        <div class="weather-status">
+          <img id="weather-icon" src="./img/icons_cloudy.png">
+          <div id="status">多雲</div>
+        </div>
+        <div id="rain-status">降雨機率：30 %</div>
+        <div id="comfort">舒適</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
