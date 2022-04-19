@@ -16,10 +16,6 @@ async function fetchWeather(county){
 };
 
 
-
-
-
-
 //抓使用者搜尋的縣市
 function getSearchText(){
     let searchText=document.querySelector("#input-field").value;
@@ -187,13 +183,21 @@ function getSearchText(){
         let ciParameterName3 = ci.time[2].parameter.parameterName;
 
         //畫面render
+
+        //抓現在時間
+        let date = new Date;
+        let month=date.getMonth()+1;
+        let day=date.getDate();
+        document.querySelector("#month").innerHTML=enMonth[month];
+        document.querySelector("#day").innerHTML=day;
+
         //地點
         document.querySelector("#place").innerHTML=location;
+
         //天氣現象
         document.querySelector("#status").innerHTML=wxParameterName1;
+
         //天氣現象圖示
-        console.log(typeof(wxParameterValue1))
-        console.log(wxParameterValue1)
         if(wxParameterValue1 == "1"){
             document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/24.svg"
         }
@@ -201,33 +205,190 @@ function getSearchText(){
             document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/27.svg"
         }
         else if(wxParameterValue1 == "4" || wxParameterValue1 == "5" || wxParameterValue1 == "6" || wxParameterValue1 == "7" ){
-            console.log(wxParameterValue1)
             document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/28.svg"
         }
         else if(wxParameterValue1 == "8" || wxParameterValue1 == "9"){
             document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/12.svg"
         }
         else{
-            console.log(wxParameterValue1)
             document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/"+wxParameterValue1+".svg"
         }
         document.querySelector("#rain-status-value").innerHTML=popParameterName1;
+
         //最低溫
         document.querySelector("#temp-low").innerHTML=mintParameterName1;
+
         //最高溫
         document.querySelector("#temp-high").innerHTML=maxtParameterName1;
+
         //舒適度
         document.querySelector("#comfort").innerHTML=ciParameterName1;
 
-        
+        //背景圖
+        if(wxParameterValue1 == "1" || wxParameterValue1 == "2" || wxParameterValue1 == "24" || wxParameterValue1 == "25"){
+            document.querySelector("#container").style.backgroundImage="url("+background["sunny"]+")";
+        }
+        else if(wxParameterValue1 == "3" || wxParameterValue1 == "4" || wxParameterValue1 == "5" || wxParameterValue1 == "6" || wxParameterValue1 == "7"
+        || wxParameterValue1 == "26" || wxParameterValue1 == "27" || wxParameterValue1 == "28"){
+            document.querySelector("#container").style.backgroundImage="url("+background["cloudy"]+")";
+        }
+        else{
+            document.querySelector("#container").style.backgroundImage="url("+background["rainy"]+")";
+        }
+
+        //查看明天天氣
+        function goafter(){
+            //顯示明天日期
+            document.querySelector("#day").innerHTML=day+1; 
+            
+            //若現在時間是18:00後
+            if (date.getHours() >= 18){
+                //天氣現象
+                document.querySelector("#status").innerHTML=wxParameterName2;
+
+                //天氣現象圖示
+                if(wxParameterValue2 == "1"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/24.svg"
+                }
+                else if(wxParameterValue2 == "2" ||wxParameterValue2 == "3"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/27.svg"
+                }
+                else if(wxParameterValue2 == "4" || wxParameterValue2 == "5" || wxParameterValue2 == "6" || wxParameterValue2 == "7" ){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/28.svg"
+                }
+                else if(wxParameterValue2 == "8" || wxParameterValue2 == "9"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/12.svg"
+                }
+                else{
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/"+wxParameterValue2+".svg"
+                }
+                document.querySelector("#rain-status-value").innerHTML=popParameterName2;
+
+                //背景圖
+                if(wxParameterValue2 == "1" || wxParameterValue2 == "2" || wxParameterValue2 == "24" || wxParameterValue2 == "25"){
+                    document.querySelector("#container").style.backgroundImage="url("+background["sunny"]+")";
+                }
+                else if(wxParameterValue2 == "3" || wxParameterValue2 == "4" || wxParameterValue2 == "5" || wxParameterValue2 == "6" || wxParameterValue2 == "7"
+                || wxParameterValue2 == "26" || wxParameterValue2 == "27" || wxParameterValue2 == "28"){
+                    document.querySelector("#container").style.backgroundImage="url("+background["cloudy"]+")";
+                }
+                else{
+                    document.querySelector("#container").style.backgroundImage="url("+background["rainy"]+")";
+                }
+
+                //最低溫
+                document.querySelector("#temp-low").innerHTML=mintParameterName2;
+
+                //最高溫
+                document.querySelector("#temp-high").innerHTML=maxtParameterName2;
+
+                //舒適度
+                document.querySelector("#comfort").innerHTML=ciParameterName2;
+
+            }else{
+                //若現在時間在18:00前
+                //天氣現象
+                document.querySelector("#status").innerHTML=wxParameterName3;
+
+                //天氣現象圖示
+                if(wxParameterValue3 == "1"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/24.svg"
+                }
+                else if(wxParameterValue3 == "2" ||wxParameterValue3 == "3"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/27.svg"
+                }
+                else if(wxParameterValue3 == "4" || wxParameterValue3 == "5" || wxParameterValue3 == "6" || wxParameterValue3 == "7" ){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/28.svg"
+                }
+                else if(wxParameterValue3 == "8" || wxParameterValue3 == "9"){
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/12.svg"
+                }
+                else{
+                    document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/"+wxParameterValue3+".svg"
+                }
+                document.querySelector("#rain-status-value").innerHTML=popParameterName3;
+
+                //背景圖
+                if(wxParameterValue3 == "1" || wxParameterValue3 == "2" || wxParameterValue3 == "24" || wxParameterValue3 == "25"){
+                    document.querySelector("#container").style.backgroundImage="url("+background["sunny"]+")";
+                }
+                else if(wxParameterValue3 == "3" || wxParameterValue3 == "4" || wxParameterValue3 == "5" || wxParameterValue3 == "6" || wxParameterValue3 == "7"
+                || wxParameterValue3 == "26" || wxParameterValue3 == "27" || wxParameterValue3 == "28"){
+                    document.querySelector("#container").style.backgroundImage="url("+background["cloudy"]+")";
+                }
+                else{
+                    document.querySelector("#container").style.backgroundImage="url("+background["rainy"]+")";
+                }
+
+                //最低溫
+                document.querySelector("#temp-low").innerHTML=mintParameterName3;
+
+                //最高溫
+                document.querySelector("#temp-high").innerHTML=maxtParameterName3;
+
+                //舒適度
+                document.querySelector("#comfort").innerHTML=ciParameterName3;
+            }
+            
+        }
+        document.querySelector("#right").addEventListener("click",goafter)
+
+        //回去看今天天氣
+        function gobefore(){
+            //顯示明天日期
+            document.querySelector("#day").innerHTML=day; 
+
+            //天氣現象
+            document.querySelector("#status").innerHTML=wxParameterName1;
+
+            //天氣現象圖示
+            if(wxParameterValue1 == "1"){
+                document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/24.svg"
+            }
+            else if(wxParameterValue1 == "2" ||wxParameterValue1 == "3"){
+                document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/27.svg"
+            }
+            else if(wxParameterValue1 == "4" || wxParameterValue1 == "5" || wxParameterValue1 == "6" || wxParameterValue1 == "7" ){
+                document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/28.svg"
+            }
+            else if(wxParameterValue1 == "8" || wxParameterValue1 == "9"){
+                document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/12.svg"
+            }
+            else{
+                document.querySelector("#weather-icon").src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/"+wxParameterValue1+".svg"
+            }
+            document.querySelector("#rain-status-value").innerHTML=popParameterName1;
+
+            //背景圖
+            if(wxParameterValue1 == "1" || wxParameterValue1 == "2" || wxParameterValue1 == "24" || wxParameterValue1 == "25"){
+                document.querySelector("#container").style.backgroundImage="url("+background["sunny"]+")";
+            }
+            else if(wxParameterValue1 == "3" || wxParameterValue1 == "4" || wxParameterValue1 == "5" || wxParameterValue1 == "6" || wxParameterValue1 == "7"
+            || wxParameterValue1 == "26" || wxParameterValue1 == "27" || wxParameterValue1 == "28"){
+                document.querySelector("#container").style.backgroundImage="url("+background["cloudy"]+")";
+            }
+            else{
+                document.querySelector("#container").style.backgroundImage="url("+background["rainy"]+")";
+            }
+
+            //最低溫
+            document.querySelector("#temp-low").innerHTML=mintParameterName1;
+
+            //最高溫
+            document.querySelector("#temp-high").innerHTML=maxtParameterName1;
+
+            //舒適度
+            document.querySelector("#comfort").innerHTML=ciParameterName1;
+        }
+
+        document.querySelector("#left").addEventListener("click",gobefore)
+
         console.log(weatherData)
     })
     .catch((error)=>{
         console.log(error)
     });
     }
-
-
 
     
 //頁面載入完成,先顯示臺北市天氣
@@ -244,19 +405,33 @@ window.addEventListener("load",()=>{
 
 
 /* 月份對照
-01 => JAN
-02 => FEB
-03 => MAR
-04 => APR
-05 => MAY
-06 => JUN
-07 => JUL
-08 => AUG
-09 => SEP
+1 => JAN
+2 => FEB
+3 => MAR
+4 => APR
+5 => MAY
+6 => JUN
+7 => JUL
+8 => AUG
+9 => SEP
 10 => OCT
 11 => NOV
 12 => DEC
 */
+let enMonth={
+    1:"JAN",
+    2:"FEB",
+    3:"MAR",
+    4:"APR",
+    5:"MAY",
+    6:"JUN",
+    7:"JUL",
+    8:"AUG",
+    9:"SEP",
+    10:"OCT",
+    11:"NOV",
+    12:"DEC"
+}
 
 /* 背景對照
 rainy => 
@@ -268,7 +443,11 @@ https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif
 cloudy => 
 ../img/cloudy.gif
 */
-
+let background={
+    sunny:"https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif",
+    cloudy:"./img/cloudy.gif",
+    rainy:"https://archive.org/download/ezgifresize1/ezgif%20resize1.gif"
+}
 
 
 
