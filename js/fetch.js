@@ -459,7 +459,31 @@ then((weatherData)=>{
 });
 
 
+/* 月份對照
+01 => JAN
+02 => FEB
+03 => MAR
+04 => APR
+05 => MAY
+06 => JUN
+07 => JUL
+08 => AUG
+09 => SEP
+10 => OCT
+11 => NOV
+12 => DEC
+*/
 
+/* 背景對照
+rainy => 
+https://archive.org/download/ezgifresize1/ezgif%20resize1.gif
+
+sunny => 
+https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif
+
+cloudy => 
+../img/cloudy.gif
+*/
 
 
 
