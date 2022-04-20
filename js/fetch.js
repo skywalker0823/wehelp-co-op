@@ -184,6 +184,10 @@ function getSearchText(){
 
         //畫面render
 
+        //處理箭頭
+        document.querySelector("#left").setAttribute("class","disabled");
+        document.querySelector("#right").removeAttribute("class","disabled");
+        
         //抓現在時間
         let date = new Date;
         let month=date.getMonth()+1;
@@ -238,6 +242,10 @@ function getSearchText(){
 
         //查看明天天氣
         function goafter(){
+            //讓右邊箭頭disabled
+            document.querySelector("#right").setAttribute("class","disabled");
+            document.querySelector("#left").removeAttribute("class","disabled");
+
             //顯示明天日期
             document.querySelector("#day").innerHTML=day+1; 
             
@@ -335,6 +343,8 @@ function getSearchText(){
 
         //回去看今天天氣
         function gobefore(){
+            document.querySelector("#left").setAttribute("class","disabled");
+            document.querySelector("#right").removeAttribute("class","disabled");
             //顯示明天日期
             document.querySelector("#day").innerHTML=day; 
 
