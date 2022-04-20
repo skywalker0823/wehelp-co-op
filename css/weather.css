@@ -17,7 +17,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://cdn.discordapp.com/attachments/965297558610133052/965893290387963914/slow.gif');
+  background-image: url('https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -28,7 +28,9 @@ html, body {
   position: fixed;
   top: 2%;
   left: 2%;
-  font-size: 22px;
+  font-size: 32px;
+  color: rgb(255 255 255 / 70%);
+  text-shadow: 2px 2px 6px rgb(0 0 0 / 40%);
 }
 
 .main-content {
