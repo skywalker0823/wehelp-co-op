@@ -16,7 +16,7 @@ How’s the weather is a simlple one-page weather forecast, including informatio
 
 ![截圖 2022-04-20 上午10.57.22.png](README%205eb3210f8a5d4b9eaca7ca3e4a179391/%E6%88%AA%E5%9C%96_2022-04-20_%E4%B8%8A%E5%8D%8810.57.22.png)
 
-[未命名.mov](README%205eb3210f8a5d4b9eaca7ca3e4a179391/%E6%9C%AA%E5%91%BD%E5%90%8D.mov)
+![](README%205eb3210f8a5d4b9eaca7ca3e4a179391/demo.gif)
 
 ## Techniques
 
