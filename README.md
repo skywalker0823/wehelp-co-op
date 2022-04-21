@@ -1,1 +1,0 @@
-# wehelp-co-op
